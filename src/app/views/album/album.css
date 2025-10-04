@@ -4,6 +4,45 @@
   min-height: 100vh;
 }
 
+.header-container {
+  padding: 24px 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1e2d50;
+}
+
+.header {
+  color: #ffffff;
+  font-size: 24px;
+  font-style: 600;
+}
+
+button {
+  background: #6abad2;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    box-shadow: 0 0 8px rgba(106, 186, 210, 0.6);
+  }
+
+  &:active {
+    background: #007194;
+  }
+}
+
 .album-info {
   display: flex;
   gap: 24px;
@@ -34,10 +73,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  cursor: pointer;
 }
 
 .track {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
   background: #6abad2;
@@ -51,4 +92,22 @@
   text-align: center;
   padding: 40px;
   color: #333;
+}
+.track-informations {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.track-number {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.track img {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 100%;
+  border: 2px solid #1e2d50;
 }

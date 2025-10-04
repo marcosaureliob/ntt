@@ -69,4 +69,8 @@ export class Artist {
   goToAlbum(id: string) {
     this.router.navigate(['/album', id]);
   }
+
+  goBack() {
+    this.router.navigate(['']);
+  }
 }

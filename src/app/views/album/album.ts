@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SpotifyService } from '../../services/spotify.service';
 
@@ -11,6 +11,8 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrl: './album.css'
 })
 export class Album {
+  private router = inject(Router);
+
   route = inject(ActivatedRoute);
   spotify = inject(SpotifyService);
   album = signal<any>(null);
@@ -34,5 +36,19 @@ export class Album {
     } finally {
       this.loading.set(false);
     }
+  }
+
+  formatDuration(ms: number): string {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  goToTrack(href: string) {
+    window.open(href, '_blank');
+  }
+
+  goBack() {
+    this.router.navigate(['']);
   }
 }
