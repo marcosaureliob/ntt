@@ -21,7 +21,7 @@
 
     <div *ngFor="let artist of artists()">
       <div class="artist-card" (click)="goToArtist(artist.id)">
-        <img [src]="artist.images?.[0]?.url || placeholder" alt="{{ artist.name }}" />
+        <img [src]="artist.images?.[0]?.url " alt="{{ artist.name }}" />
         <p class="name">{{ artist.name }}</p>
       </div>
     </div>

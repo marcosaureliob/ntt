@@ -20,7 +20,6 @@ export class Home {
   loading = signal(false);
   error = signal<string | null>(null);
   searched = false;
-  placeholder = 'https://via.placeholder.com/150?text=Artist';
   constructor(@Inject(SpotifyService) private spotify: SpotifyService, private router: Router) { }
 
   async search() {
