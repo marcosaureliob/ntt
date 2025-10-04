@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SpotifyService } from '../../services/spotify.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -20,8 +21,7 @@ export class Home {
   error = signal<string | null>(null);
   searched = false;
   placeholder = 'https://via.placeholder.com/150?text=Artist';
-
-  constructor(private spotify: SpotifyService, private router: Router) { }
+  constructor(@Inject(SpotifyService) private spotify: SpotifyService, private router: Router) { }
 
   async search() {
     if (!this.query.trim()) return;
