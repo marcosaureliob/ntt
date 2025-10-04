@@ -1,0 +1,29 @@
+<div class="container" *ngIf="album(); else loadingOrError">
+  <div class="album-info">
+    <img [src]="album()?.images?.[0]?.url || placeholder" alt="{{ album()?.name }}" />
+    <div class="details">
+      <h2>{{ album()?.name }}</h2>
+      <p>Artista: {{ album()?.artists?.[0]?.name }}</p>
+      <p>Lançamento: {{ album()?.release_date }}</p>
+      <p>Total de faixas: {{ album()?.total_tracks }}</p>
+    </div>
+  </div>
+
+  <h3>Faixas</h3>
+  <div class="tracks">
+    <div class="track" *ngFor="let track of album()?.tracks?.items; index as i">
+      <span>{{ i + 1 }}.</span>
+      <span>{{ track.name }}</span>
+      <span>{{ track.duration_ms / 60000 | number:'1.0-0' }} min</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="loading()" class="loading-container">
+    <p>Carregando álbum...</p>
+  </div>
+  <div *ngIf="error()" class="error-message">
+    {{ error() }}
+  </div>
+</ng-template>
