@@ -12,6 +12,13 @@ export class SpotifyService {
         this.auth();
     }
 
+    private async ensureAuthenticated() {
+        if (!this.token()) {
+            await this.auth();
+        }
+    }
+
+
     private async auth() {
         const creds = btoa(`${environment.spotifyClientId}:${environment.spotifyClientSecret}`);
         const headers = new HttpHeaders({ 'Authorization': `Basic ${creds}`, 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -31,7 +38,9 @@ export class SpotifyService {
         return { headers: new HttpHeaders({ Authorization: `Bearer ${this.token()}` }) };
     }
 
+  
     async searchArtists(query: string) {
+        await this.ensureAuthenticated()
         if (!query) return [];
         this.loading.set(true); this.error.set(null);
 
@@ -62,6 +71,7 @@ export class SpotifyService {
 
 
     async getArtist(id: string) {
+        await this.ensureAuthenticated()
         this.loading.set(true); this.error.set(null);
         try {
             const [artist, albums] = await Promise.all([

@@ -1,1 +1,35 @@
-<p>artist works!</p>
+<div class="container" *ngIf="artist(); else loadingOrError">
+  <div class="artist-info">
+    <img [src]="artist()?.images?.[0]?.url || placeholder" alt="{{ artist()?.name }}" />
+    <div class="details">
+      <h2>{{ artist()?.name }}</h2>
+      <p>{{ artist()?.followers?.total | number }} seguidores</p>
+      <p *ngIf="artist()?.genres?.length">Gêneros: {{ artist()?.genres.join(', ') }}</p>
+    </div>
+  </div>
+
+  <h3 style="color: blueviolet">Álbuns</h3>
+  <div class="albums">
+    <div class="album-card" *ngFor="let album of pagedAlbums" (click)="goToAlbum(album.id)">
+      <img [src]="album.images?.[0]?.url || placeholder" alt="{{ album.name }}" />
+      <p>{{ album.name }}</p>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="albums().length > limit">
+    <button (click)="prevPage()" [disabled]="page() === 0">Anterior</button>
+    <span>Página {{ page() + 1 }} de {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="(page() + 1) * limit >= albums().length">
+      Próxima
+    </button>
+  </div>
+</div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="loading()" class="loading-container">
+    <p>Carregando artista...</p>
+  </div>
+  <div *ngIf="error()" class="error-message">
+    {{ error() }}
+  </div>
+</ng-template>

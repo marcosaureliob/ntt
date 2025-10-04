@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpotifyService } from '../../services/spotify.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -17,10 +18,10 @@ export class Home {
   artists = signal<any[]>([]);
   loading = signal(false);
   error = signal<string | null>(null);
-  searched = false; 
+  searched = false;
   placeholder = 'https://via.placeholder.com/150?text=Artist';
 
-  constructor(private spotify: SpotifyService) { }
+  constructor(private spotify: SpotifyService, private router: Router) { }
 
   async search() {
     if (!this.query.trim()) return;
@@ -39,5 +40,8 @@ export class Home {
     } finally {
       this.loading.set(false);
     }
+  }
+  goToArtist(id: string) {
+    this.router.navigate(['/artist', id]);
   }
 }
