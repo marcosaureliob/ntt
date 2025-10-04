@@ -3,6 +3,7 @@
     <h1 class="header">NTT Music</h1>
     <div>
       <form (ngSubmit)="search()">
+        <span class="search-icon">🔍</span> 
         <input [(ngModel)]="query" name="query" placeholder="Buscar artista..." />
         <button type="submit">Buscar</button>
       </form>
@@ -10,25 +11,33 @@
   </div>
 
   <div class="body-container">
-    <div *ngIf="loading()" class="loading-container">
+    <div *ngIf="!searched" class="initial-state">
+      <h2>Encontre seu Artista Favorito</h2>
+      <p>Use a barra de pesquisa acima para começar a buscar artistas e bandas.</p>
+      </div>
+    
+    <div *ngIf="loading()" class="status-container">
       <div class="spinner"></div>
       <p>Buscando artistas...</p>
     </div>
 
-    <div *ngIf="error()" class="error-message">
-      {{ error() }}
+    <div *ngIf="error()" class="status-container error-message">
+      <p>{{ error() }}</p>
     </div>
 
-    <div *ngFor="let artist of artists()">
-      <div class="artist-card" (click)="goToArtist(artist.id)">
-        <img [src]="artist.images?.[0]?.url " alt="{{ artist.name }}" />
-        <p class="name">{{ artist.name }}</p>
+    <div class="artists-grid">
+      <div *ngFor="let artist of artists()">
+        <div class="artist-card" (click)="goToArtist(artist.id)">
+          <img [src]="artist.images?.[0]?.url || 'assets/default-artist.png'" alt="{{ artist.name }}" />
+          <p class="name">{{ artist.name }}</p>
+        </div>
       </div>
     </div>
-
-    <div *ngIf="!loading() && !artists().length && !error() && searched" class="no-results">
-      <p>Nenhum artista encontrado para "{{ query }}".</p>
-      <p>Tente buscar por outro nome.</p>
+    
+    <div *ngIf="!loading() && !artists().length && !error() && searched" class="status-container no-results">
+      <h2>Ops! Nenhum artista encontrado.</h2>
+      <p>Não encontramos resultados para **"{{ query }}"**.</p>
+      <p>Verifique a ortografia ou tente buscar por um nome diferente.</p>
     </div>
   </div>
 </div>

@@ -1,9 +1,9 @@
-  <div class="header-container">
-    <h1 class="header">NTT Music</h1>
-    <div>
-        <button type="button" (click)="goBack()">Voltar</button>
-    </div>
+<div class="header-container">
+  <h1 class="header">NTT Music</h1>
+  <div>
+    <button type="button" (click)="goBack()">Voltar</button>
   </div>
+</div>
 
 <div class="container" *ngIf="artist(); else loadingOrError">
   <div class="artist-info">
