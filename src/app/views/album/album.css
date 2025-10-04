@@ -5,6 +5,7 @@
   min-height: 100vh;
   padding: 24px 46px; 
   color: #ffffff;
+  margin-top: -1px;
 }
 
 .header-container {
