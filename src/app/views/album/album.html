@@ -5,21 +5,24 @@
   </div>
 </div>
 
-<div class="container" *ngIf="album();">
+<div class="container" *ngIf="album()">
   <div class="album-info">
     <img [src]="album()?.images?.[0]?.url || placeholder" alt="{{ album()?.name }}" />
     <div class="details">
       <h2>{{ album()?.name }}</h2>
-      <p>Artista: **{{ album()?.artists?.[0]?.name }}**</p>
-      <p>Lançamento: **{{ album()?.release_date }}**</p>
-      <p>Total de faixas: **{{ album()?.total_tracks }}**</p>
+      <p>Artista: {{ album()?.artists?.[0]?.name }}</p>
+      <p>Lançamento: {{ album()?.release_date | date : 'dd/MM/yyyy' }}</p>
+      <p>Total de faixas: {{ album()?.total_tracks }}</p>
     </div>
   </div>
 
   <h3>Faixas</h3>
   <div class="tracks">
-    <div class="track" *ngFor="let track of album()?.tracks?.items; index as i" (click)="goToTrack(track.external_urls.spotify)">
-      
+    <div
+      class="track"
+      *ngFor="let track of album()?.tracks?.items; index as i"
+      (click)="goToTrack(track.external_urls.spotify)"
+    >
       <div class="track-informations">
         <span class="track-number">{{ i + 1 }}</span>
         <span>{{ track.name }}</span>
