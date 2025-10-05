@@ -185,31 +185,38 @@ button {
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
-    gap: 15px;
-    padding: 20px 20px;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
   }
 
-  .body-container {
-    padding: 20px;
+  .initial-state{
+    padding: 0;
   }
 
   form {
+    display: flex;
     width: 100%;
   }
 
   input {
-    flex-grow: 1;
-    width: auto;
+    width: 100%;
+    margin-right: 8px;
   }
 
-  .initial-state h2 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 10px;
+  button {
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
-  .initial-state p {
-    font-size: 12px;
+  .artists-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .artist-card img {
+    width: 120px;
+    height: 120px;
   }
 }
+
