@@ -1,59 +1,113 @@
-# Ntt
+🎧 NTT Music
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+Aplicação desenvolvida em Angular 20.3.4, inspirada na interface e funcionalidades do Spotify, como parte de uma avaliação técnica focada em boas práticas, arquitetura moderna e uso de Signals.
 
-## Development server
+👉 Deploy: ntt-data-ten.vercel.app
 
-To start a local development server, run:
+🚀 Objetivo
 
-```bash
+O projeto consome a API pública do Spotify e permite:
+
+Buscar artistas;
+
+Visualizar detalhes de cada artista (imagem, gêneros, seguidores);
+
+Listar álbuns e faixas de cada artista;
+
+Ver detalhes completos de cada álbum.
+
+A aplicação foi construída sem bibliotecas externas de UI, utilizando apenas CSS puro, com design responsivo adaptado para dispositivos móveis.
+
+🧱 Tecnologias Utilizadas
+
+Angular 20.3.4 (Standalone Components)
+
+Signals para gerenciamento de estado reativo
+
+Spotify Web API (Client Credentials Flow)
+
+Roteamento Angular com três páginas principais:
+
+/ → Página inicial de busca
+
+/artist/:id → Detalhes do artista
+
+/album/:id → Detalhes do álbum
+
+⚙️ Instalação e Execução
+
+Clone o repositório e instale as dependências:
+
+npm install
+
+
+Crie o arquivo src/environments/environment.ts com suas credenciais do Spotify:
+
+export const environment = {
+  clientId: 'SEU_CLIENT_ID',
+  clientSecret: 'SEU_CLIENT_SECRET'
+};
+
+
+Inicie o servidor de desenvolvimento:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Acesse o projeto em:
+http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🧭 Estrutura de Rotas
+import { Routes } from '@angular/router';
+import { Home } from './views/home/home';
+import { Artist } from './views/artist/artist';
+import { Album } from './views/album/album';
 
-```bash
-ng generate component component-name
-```
+export const routes: Routes = [
+  { path: '', component: Home },
+  { path: 'artist/:id', component: Artist },
+  { path: 'album/:id', component: Album },
+];
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+🧩 Funcionalidades Principais
 
-```bash
-ng generate --help
-```
+Busca dinâmica de artistas com estado de carregamento.
 
-## Building
+Exibição de mensagens quando não há resultados.
 
-To build the project run:
+Detalhes completos do artista e seus álbuns.
 
-```bash
+Página do álbum com lista de faixas.
+
+Tratamento de erros para requisições da API.
+
+Layout limpo e responsivo (desktop e mobile).
+
+📦 Build e Deploy
+
+Gerar build de produção:
+
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+O projeto está disponível em produção pela Vercel:
+🔗 https://ntt-data-ten.vercel.app/
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+🧠 Avaliação Técnica
 
-```bash
-ng test
-```
+Tema: Frontend Angular (Versão Spotify)
+Pontos avaliados:
 
-## Running end-to-end tests
+Arquitetura moderna com Standalone Components;
 
-For end-to-end (e2e) testing, run:
+Uso de Signals para reatividade;
 
-```bash
-ng e2e
-```
+Boas práticas (Clean Code e SOLID);
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+CSS puro e criatividade de layout;
 
-## Additional Resources
+Consumo e tratamento de erros de API;
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Deploy funcional e responsivo.
+
+Feito com Angular, CSS e música em mente 🎶
