@@ -5,8 +5,16 @@
   </div>
 </div>
 
-<div class="container" *ngIf="album()">
-  <div class="album-info">
+<div class="container">
+  <div *ngIf="loading()" class="loading-container">
+    <p>Carregando álbum...</p>
+  </div>
+
+  <div *ngIf="error()" class="error-message">
+    {{ error() }}
+  </div>
+
+  <div *ngIf="!loading() && !error() && album()" class="album-info">
     <img [src]="album()?.images?.[0]?.url || placeholder" alt="{{ album()?.name }}" />
     <div class="details">
       <h2>{{ album()?.name }}</h2>
@@ -16,19 +24,24 @@
     </div>
   </div>
 
-  <h3>Faixas</h3>
-  <div class="tracks">
-    <div
-      class="track"
-      *ngFor="let track of album()?.tracks?.items; index as i"
-      (click)="goToTrack(track.external_urls.spotify)"
-    >
-      <div class="track-informations">
-        <span class="track-number">{{ i + 1 }}</span>
-        <span>{{ track.name }}</span>
+  <div *ngIf="!loading() && !error() && album()?.tracks?.items?.length">
+    <h3>Faixas</h3>
+    <div class="tracks">
+      <div
+        class="track"
+        *ngFor="let track of album()?.tracks?.items; index as i"
+        (click)="goToTrack(track.external_urls.spotify)"
+      >
+        <div class="track-informations">
+          <span class="track-number">{{ i + 1 }}</span>
+          <span>{{ track.name }}</span>
+        </div>
+        <span>{{ formatDuration(track.duration_ms) }}</span>
       </div>
-
-      <span>{{ formatDuration(track.duration_ms) }}</span>
     </div>
+  </div>
+
+  <div *ngIf="!loading() && !error() && album() && !album()?.tracks?.items?.length" class="error-message">
+    Nenhuma faixa encontrada.
   </div>
 </div>
