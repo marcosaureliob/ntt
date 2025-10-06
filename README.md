@@ -35,6 +35,7 @@ Clone o repositório e instale as dependências:
 npm install
 
 Crie o arquivo src/environments/environment.ts com suas credenciais do Spotify:
+
 export const environment = {
   clientId: 'SEU_CLIENT_ID',
   clientSecret: 'SEU_CLIENT_SECRET'
