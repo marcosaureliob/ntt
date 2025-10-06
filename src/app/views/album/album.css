@@ -153,19 +153,23 @@ h3 {
 
 .loading-container,
 .error-message {
+  height: 100vh;
+  background: #000;
   text-align: center;
   padding: 80px;
-  color: #b3b3b3;
   font-size: 18px;
+  color: #fff;
 }
 
+
+.loading-container p{
+  color: #fff;
+}
+
+
 .error-message {
-  background-color: #481a1a; 
-  color: #FF6B6B; 
-  border: 1px solid #c33;
-  border-radius: 8px;
-  max-width: 500px;
-  margin: 40px auto;
+  background: #282828;
+  color: #ff6b6b;
 }
 
 @media (max-width: 768px) {
