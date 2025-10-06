@@ -31,7 +31,7 @@ A aplicação foi construída **sem bibliotecas externas de UI**, utilizando ape
 ## ⚙️ Instalação e Execução
 
 
-Clone o repositório e instale as dependências:  
+Clone a branch master no repositório e instale as dependências:  
 npm install
 
 Crie o arquivo src/environments/environment.ts com suas credenciais do Spotify:
