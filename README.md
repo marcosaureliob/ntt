@@ -1,4 +1,4 @@
-**# 🎧 NTT Music
+## 🎧 NTT Music
 
 Aplicação desenvolvida em **Angular 20.3.4**, inspirada na interface e funcionalidades do **Spotify**, como parte de uma avaliação técnica focada em **boas práticas, arquitetura moderna e uso de Signals**.
 
